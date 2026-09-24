@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import os
-from pathlib import Path
 
 st.set_page_config(page_title="Dashboard de Vendas", layout="wide")
 
@@ -9,11 +7,7 @@ st.title('Dashboard de Vendas')
 
 @st.cache_data
 def carregar_dados():
-    script_dir = Path(__file__).parent.parent.parent
-    csv_path = script_dir / 'vendas.csv'
-    st.write(f"DEBUG: Procurando arquivo em: {csv_path}")
-    st.write(f"DEBUG: Arquivo existe? {csv_path.exists()}")
-    df = pd.read_csv(csv_path)
+    df = pd.read_csv('vendas.csv')
     df['Data'] = pd.to_datetime(df['Data'])
     return df
 
